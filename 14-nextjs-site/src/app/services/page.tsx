@@ -1,27 +1,9 @@
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
+import { ServiceIcon } from "@/components/service-icon";
 import { SectionHeading } from "@/components/section-heading";
-
-const services = [
-  {
-    number: "01",
-    title: "Brand strategy & identity",
-    description: "Find the signal in the noise. We help you define what makes you different, then build a brand system that makes it unmistakable.",
-    offerings: ["Positioning & story", "Naming & verbal identity", "Visual identity systems"],
-  },
-  {
-    number: "02",
-    title: "Digital products & platforms",
-    description: "Make the complex feel simple. From first sketch to final launch, we create digital experiences people love to use.",
-    offerings: ["Product strategy", "UX & interface design", "Web development"],
-  },
-  {
-    number: "03",
-    title: "Creative growth",
-    description: "Keep the good things growing. We bring creative thinking and practical tools together to help your business build momentum.",
-    offerings: ["Campaign concepts", "Content & art direction", "Ongoing optimization"],
-  },
-];
+import Link from "next/link";
+import { formatPriceFrom, getServices } from "@/lib/services";
 
 export const metadata = {
   title: "Services",
@@ -29,6 +11,8 @@ export const metadata = {
 };
 
 export default function ServicesPage() {
+  const services = getServices();
+
   return (
     <>
       <section className="bg-[#17231d] py-16 text-white sm:py-24">
@@ -44,25 +28,27 @@ export default function ServicesPage() {
       </section>
 
       <section className="py-16 sm:py-24">
-        <Container>
+        <Container className="grid gap-5 md:grid-cols-2">
           {services.map((service) => (
-            <article key={service.number} className="grid gap-6 border-b border-[#17231d]/10 py-9 first:pt-0 md:grid-cols-[0.2fr_0.8fr] md:gap-10 md:py-12">
-              <p className="text-xs font-bold tracking-[0.18em] text-[#789166]">{service.number} / 03</p>
-              <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr]">
-                <div>
-                  <h2 className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{service.title}</h2>
-                  <p className="mt-4 max-w-2xl text-sm leading-7 text-[#66716a] sm:text-base">{service.description}</p>
-                </div>
-                <ul className="space-y-3 text-sm font-medium text-[#44534a]">
-                  {service.offerings.map((offering) => (
-                    <li key={offering} className="flex items-center gap-3">
-                      <span className="size-1.5 rounded-full bg-[#91bd54]" />
-                      {offering}
-                    </li>
-                  ))}
-                </ul>
+            <Link
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              className="group flex min-h-64 flex-col rounded-3xl border border-[#17231d]/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#91bd54]/60 hover:shadow-xl hover:shadow-[#17231d]/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#557c56] sm:p-8"
+            >
+              <div className="flex items-start justify-between">
+                <span className="grid size-12 place-items-center rounded-2xl bg-[#e9eee2] text-[#557c56] transition-colors group-hover:bg-[#c6f277]">
+                  <ServiceIcon name={service.icon} className="size-6" />
+                </span>
+                <span aria-hidden="true" className="text-xl text-[#8b978e] transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
               </div>
-            </article>
+              <h2 className="mt-8 text-xl font-semibold tracking-[-0.04em] text-[#17231d] sm:text-2xl">
+                {service.title}
+              </h2>
+              <p className="mt-3 max-w-lg text-sm leading-6 text-[#66716a]">{service.summary}</p>
+              <p className="mt-auto pt-6 text-xs font-semibold uppercase tracking-[0.12em] text-[#557c56]">
+                From {formatPriceFrom(service.priceFrom)}
+              </p>
+            </Link>
           ))}
         </Container>
       </section>
