@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/button";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
@@ -40,24 +41,16 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative mx-auto aspect-[0.98] w-full max-w-[560px]" aria-label="Abstract green and cream shapes representing new ideas" role="img">
-              <div className="absolute inset-[8%] rotate-[-8deg] rounded-[2rem] bg-[#e6ebdb]" />
-              <div className="absolute inset-[11%_8%_7%_12%] overflow-hidden rounded-[2rem] bg-[#d2e7a9]">
-                <div className="absolute -left-[20%] top-[10%] size-[78%] rounded-full border-[34px] border-[#f7f8f2] sm:border-[48px]" />
-                <div className="absolute -bottom-[14%] -right-[6%] size-[68%] rounded-full bg-[#76975e]" />
-                <div className="absolute right-[20%] top-[17%] size-[21%] rounded-full bg-[#f1a37c]" />
-                <div className="absolute left-[13%] top-[58%] h-[28%] w-[56%] -rotate-[28deg] rounded-full bg-[#f7f8f2]" />
-                <div className="absolute bottom-6 left-6 flex items-center gap-2 rounded-full bg-[#17231d] px-4 py-2 text-xs font-medium text-white sm:bottom-8 sm:left-8 sm:text-sm">
-                  <span className="size-2 rounded-full bg-[#c6f277]" />
-                  Ideas in motion
-                </div>
-              </div>
-              <div className="absolute right-[3%] top-[12%] grid size-16 rotate-12 place-items-center rounded-2xl bg-[#17231d] text-2xl text-[#c6f277] shadow-xl sm:size-20 sm:text-3xl">
-                ✳
-              </div>
-              <div className="absolute bottom-[8%] right-[4%] rounded-full border border-[#17231d]/15 bg-[#f7f8f2] px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#17231d]">
-                Since 2012
-              </div>
+            <div className="relative mx-auto aspect-square w-full max-w-[560px]">
+              <Image
+                src="/northstar-hero.png"
+                alt=""
+                width={1200}
+                height={1200}
+                sizes="(min-width: 1024px) 560px, 100vw"
+                preload
+                className="h-full w-full rounded-[2rem] object-contain"
+              />
             </div>
           </div>
         </Container>

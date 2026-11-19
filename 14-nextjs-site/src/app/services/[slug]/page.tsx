@@ -9,6 +9,7 @@ import {
   getService,
   getServices,
 } from "@/lib/services";
+import { absoluteUrl } from "@/lib/site";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -41,6 +42,17 @@ export async function generateMetadata({
       title: `${service.title} | Northstar Studio`,
       description: service.summary,
       type: "website",
+      locale: "en_US",
+      url: absoluteUrl(`/services/${service.slug}`),
+      siteName: "Northstar Studio",
+      images: [
+        {
+          url: "/northstar-og.png",
+          width: 1200,
+          height: 630,
+          alt: "Northstar Studio — Make room for what’s next.",
+        },
+      ],
     },
   };
 }
