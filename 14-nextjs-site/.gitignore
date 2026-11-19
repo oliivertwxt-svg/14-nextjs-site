@@ -19,6 +19,7 @@
 
 # production
 /build
+**/data/contact-messages.json
 
 # misc
 .DS_Store
